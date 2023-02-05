@@ -1,3 +1,0 @@
-# HEHE
-
-Some Description.
