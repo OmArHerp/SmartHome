@@ -8,29 +8,25 @@
 
 /***************************************************************INCLUDE*************************************************************************/
 #include "Includes.h"
-/***************************************************************PROTOTYPES_FUNCTIONS************************************************************/
+/***********************************************************PROTOTYPES_FUNCTIONS************************************************************/
 void LCD_Welcome(void);
 void ADC_ISR(void);
 void TimerISR(void);
 void X_ISR(void);
-/***************************************************************GLOBAL_VARIABLES****************************************************************/
-//void LCD_EEPROM_AdminMode(u8 Admin);
-u16 Gloable_u16_ADC_Reading =0 ;
-u16 Gloable_u16_Analog_MV ;
-u8  Gloable_u8_temp        ;
-u8  Gloable_u8_AC_Flag       ;
-u8 static Local_u8_Admin = 0; /*while it's a 0 no admin has been entered just yet*/
-u8 static Local_u8_Error = 0;
-u8 Local_u8_Variable6 =0;
-u8  Local_u8_Variable13 ;
-
-/**************************************************************************************************************************************************/
-
+/***********************************************************GLOBAL_VARIABLES****************************************************************/
+u16 Gloable_u16_ADC_Reading =0		 ;
+u16 Gloable_u16_Analog_MV			 ;
+u8  Gloable_u8_temp					 ;
+u8  Gloable_u8_AC_Flag = AC_OFF		 ;
+u8  static Local_u8_Admin = NO_ADMIN ;
+u8  static Local_u8_Error = ERROR	 ;
+u8  Local_u8_Variable6 =0			 ;
+u8  Local_u8_Variable13				 ;	
+/***********************************************************START_OF_MAIN*********************************************************************/
 int main(void)
 {
 	
-	/*****************************************************INITS***********************************************************/
-	//H_KeyPad_Init();
+	/************************************************INITS******************************************************/
 	H_Lcd_Init();
 	H_Buzzer_Init();
 	HC05_Init();
@@ -51,15 +47,14 @@ int main(void)
 	H_Led_Init(LED4);
 	H_KeyPad_Init();
     M_EXTI_CallBack(INT0,X_ISR);
-
-	/*************************************************LOCAL_VARIABLES*******************************************************/
+	/*************************************************LOCAL_VARIABLES***********************************************/
 	u8 Local_u8_ID = TAKE_ID;
 	u8 Local_u8_AdminID = 0;
 	u8 Local_u8_AdminCounter = 0;
 	u8 Local_u8_IDAndPass[40] = {0};
 	u8 Local_u8_counter = 0;
 	u8 Local_u8_ForLoopcounter = 0;
-	u8 static Local_u8_Trials = 3;
+	u8 Local_u8_Trials = 3;
 	u8 Local_u8_EEPROM = 0;
 	u8 Local_u8_EEPROMCount = 0;
 	u8 Local_u8_Variable1 =0;
@@ -67,7 +62,6 @@ int main(void)
 	u8 Local_u8_Variable3 =0;
 	u8 Local_u8_Variable4 =0;
 	u8 Local_u8_Variable5 =0;
-// 	u8 Local_u8_Variable6 =0;
 	u8 Local_u8_Variable7 =0;
 	u8 Local_u8_Variable8 =0;
 	u8 Local_u8_Variable9 =0;
@@ -105,10 +99,17 @@ int main(void)
 			Local_u8_Mode = ADMIN_MODE; 
 			break;
 		}
-		else if(Local_u8_Variable6 == 'A')
+		else if(Local_u8_Variable6 == 'A' && Local_u8_Admin == ADMIN_EXISTS)
 		{
 			Local_u8_Mode = USER_MODE;
 			break;
+		}
+		else if(Local_u8_Variable6 == 'A' && Local_u8_Admin == NO_ADMIN) // --> How come can be there a user if there's no admin ?
+		{
+			H_Lcd_Clr();
+			H_Lcd_WriteString("THERE'S NO ADMIN");
+			H_Lcd_GoTo(1,0);
+			H_Lcd_WriteString("YET");
 		}
 		else
 		{
@@ -715,18 +716,11 @@ else if (Local_u8_Mode == USER_MODE)
 }
 
 }
-//}
 
-
-
-
-
-			
-		// }
 	
 	
-}//end of main
-/***********************************************************************************************************************************************/
+}
+/********************************************************************END_OF_MAIN*********************************************************************/
 void LCD_Welcome(void)
 {
 	H_Lcd_GoTo(0,0);
@@ -741,33 +735,32 @@ void LCD_Welcome(void)
 	H_Lcd_WriteString("Proceed");
 	/*****************************************************************************/
 	UART_TxString("Welcome to your home sir");
-	UART_Tx(13);
+	UART_Tx(NEXTLINE);
 	UART_TxString(" Press 'A' To");
-	UART_Tx(13);
+	UART_Tx(NEXTLINE);
 	UART_TxString(" Proceed");
-	UART_Tx(13);	
+	UART_Tx(NEXTLINE);	
 }
 
  void Door_Control(void)
  {
 	 M_Dio_PinMode(PD7,OUTPUT);
-	 u8 Local_u8_reading = 0 ;
+	 u8 Local_u8_DOOR_STATUS = ALREADY_CLOSED;
 	 UART_Tx(NEXTLINE);
 	 UART_TxString(" 1-Door Open");
 	 UART_Tx(NEXTLINE);
 	 UART_TxString(" 2-Door Close");
-	 Local_u8_reading = HC05_Rx() ;
-	 if (Local_u8_reading == '1')
+	 Local_u8_DOOR_STATUS = HC05_Rx();
+	 
+	 if (Local_u8_DOOR_STATUS == OPEN_DOOR)
 	 {
 		 M_Dio_PinWrite(PD7,HIGH);
 		 _delay_ms(2);
 		 M_Dio_PinWrite(PD7,LOW);
-	     UART_Tx(13);
+	     UART_Tx(NEXTLINE);
 		 UART_TxString("DONE");
-
-		 
 	 }
-	 else if(Local_u8_reading == '2')
+	 else if(Local_u8_DOOR_STATUS == CLOSE_DOOR)
 	 {
 		 M_Dio_PinWrite(PD7,HIGH);
 		 _delay_ms(1.5);
@@ -775,29 +768,25 @@ void LCD_Welcome(void)
 	     UART_Tx(NEXTLINE);
 		 UART_TxString("  DONE");
 		 UART_Tx(NEXTLINE);
-
 	 }
 	 else
 	 {
 		 	 //do nothing
 
 	 }
-
-
  }
-
 
  void Light_Control(void)
  {
-	u8 Local_u8_reading = 0 ;
+	u8 Local_u8_LIGHTS = OFF ;
     UART_Tx(NEXTLINE);
 	UART_TxString(" 1-Lights ON");
 	UART_Tx(NEXTLINE);
 	UART_TxString(" 2-Lights OFF");
 	UART_Tx(NEXTLINE);
 
-	Local_u8_reading = HC05_Rx() ;
-	if (Local_u8_reading == '1')
+	Local_u8_LIGHTS = HC05_Rx() ;
+	if (Local_u8_LIGHTS == LIGHTS_ON)
 	{
 		H_Led_On(LED0);
 		H_Led_On(LED1);
@@ -805,7 +794,7 @@ void LCD_Welcome(void)
 		H_Led_On(LED3);
 		H_Led_On(LED4);
 	}
-	else if (Local_u8_reading == '2')
+	else if (Local_u8_LIGHTS == LIGHTS_OFF)
 	{
 		H_Led_Off(LED0);
 		H_Led_Off(LED1);
@@ -819,7 +808,6 @@ void LCD_Welcome(void)
 	}
 	 
  }
- 
  
   void Dim_Light_Control(void)
   {
@@ -846,18 +834,12 @@ void LCD_Welcome(void)
 			  default:                    break;
 		  }
 	  }  
-
   }
-
-
-
 
 void AirCond_control(void)
 {
 	u8 Local_u8_erorr ;
 	Local_u8_erorr = M_ADC_StartConversionAsynch(0, &Gloable_u16_ADC_Reading,ADC_ISR);
-	
-
 }
 
 void ADC_ISR(void)
@@ -866,24 +848,23 @@ void ADC_ISR(void)
 	Gloable_u8_temp = Gloable_u16_Analog_MV / 10 ;
 }
 
-
 void TimerISR(void)
 {
 	AirCond_control();
-	if(Gloable_u8_AC_Flag == 1)
+	if(Gloable_u8_AC_Flag == AC_ON)
 	{
-	if(Gloable_u8_temp > 27)
-	{
-		H_H_Bridge_CH1_EN();
-	}
-	else if  (Gloable_u8_temp < 21)
-	{
-		H_H_Bridge_CH1_Break();
-	}
-	else
-	{
-		// do nothing
-	}
+		if(Gloable_u8_temp > 27)
+		{
+			H_H_Bridge_CH1_EN();
+		}
+		else if  (Gloable_u8_temp < 21)
+		{
+			H_H_Bridge_CH1_Break();
+		}
+		else
+		{
+			// do nothing
+		}
 	}
 	else
 	{
@@ -901,42 +882,38 @@ void AirCond_EN(void)
 	_delay_ms(50);
 	Local_u8_Number = (Gloable_u8_temp/10)+48 ;
 	Local_u8_Number1=  (Gloable_u8_temp%10)+48 ;
-    UART_Tx(13);
+    UART_Tx(NEXTLINE);
 	_delay_ms(50);
 	UART_TxString(" Current temperature is : ");
-		_delay_ms(50);
+	_delay_ms(50);
 	UART_Tx(Local_u8_Number);
-		_delay_ms(50);
+	_delay_ms(50);
 	UART_Tx(Local_u8_Number1); 
-    UART_Tx(13);
+    UART_Tx(NEXTLINE);
 	UART_TxString("   1-AC Enable");
-    UART_Tx(13);
+    UART_Tx(NEXTLINE);
 	UART_TxString(" 2-AC Disable");
+	
 	Local_u8_reading = HC05_Rx() ;
-	if (Local_u8_reading == '1')
+	if (Local_u8_reading == TURN_ON)
 	{
-		Gloable_u8_AC_Flag = 1 ;
+		Gloable_u8_AC_Flag = AC_ON ;
 	}
-	else if (Local_u8_reading == '2')
+	else if (Local_u8_reading == TURN_OFF)
 	{
-		Gloable_u8_AC_Flag = 0 ;
+		Gloable_u8_AC_Flag = AC_OFF ;
 	}
 	else
 	{
 		//DO Nothing
 	}
-	
-	
-	
 }
 
 void X_ISR(void)
-  {
-	  Local_u8_Variable13 = 1;
-
-	  while(Local_u8_Variable6 == 0)
-	  {
-		  Local_u8_Variable6 = H_KeyPad_Read();
-	  }
-
-  }
+{
+	Local_u8_Variable13 = 1;
+	while(Local_u8_Variable6 == 0)
+	{
+	  Local_u8_Variable6 = H_KeyPad_Read();
+	}
+}

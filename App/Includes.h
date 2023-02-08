@@ -74,6 +74,16 @@
 #define CHECKING				1
 #define YES						1
 #define NO						0	
+#define AC_OFF					0
+#define AC_ON					1
+#define TURN_ON				   '1'
+#define TURN_OFF			   '2'
+#define ALREADY_CLOSED			0
+#define OPEN_DOOR			   '1'
+#define CLOSE_DOOR			   '2'
+#define OFF						0
+#define LIGHTS_ON			   '1'
+#define LIGHTS_OFF			   '2'
 /*****************************************************_PROTOTYPES_*****************************************************/
 void Door_Control(void);
 void Light_Control(void);
