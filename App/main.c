@@ -83,7 +83,6 @@ int main(void)
 	LCD_Welcome();
 	while(WATING_FOR_A)
 	{ 
-	 
 		while (Local_u8_Variable13 == 0)
 		{
 					Local_u8_Variable5 = HC05_Rx();
@@ -99,17 +98,10 @@ int main(void)
 			Local_u8_Mode = ADMIN_MODE; 
 			break;
 		}
-		else if(Local_u8_Variable6 == 'A' && Local_u8_Admin == ADMIN_EXISTS)
+		else if(Local_u8_Variable6 == 'A')
 		{
 			Local_u8_Mode = USER_MODE;
 			break;
-		}
-		else if(Local_u8_Variable6 == 'A' && Local_u8_Admin == NO_ADMIN) // --> How come can be there a user if there's no admin ?
-		{
-			H_Lcd_Clr();
-			H_Lcd_WriteString("THERE'S NO ADMIN");
-			H_Lcd_GoTo(1,0);
-			H_Lcd_WriteString("YET");
 		}
 		else
 		{
@@ -716,7 +708,14 @@ else if (Local_u8_Mode == USER_MODE)
 }
 
 }
+//}
 
+
+
+
+
+			
+		// }
 	
 	
 }
@@ -794,7 +793,7 @@ void LCD_Welcome(void)
 		H_Led_On(LED3);
 		H_Led_On(LED4);
 	}
-	else if (Local_u8_LIGHTS == LIGHTS_OFF)
+	else if (Local_u8_LIGHTS == LIGHTS_ON)
 	{
 		H_Led_Off(LED0);
 		H_Led_Off(LED1);

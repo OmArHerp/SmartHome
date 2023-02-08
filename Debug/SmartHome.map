@@ -516,7 +516,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x19d8
+.text           0x00000000     0x19a4
  *(.vectors)
  .vectors       0x00000000       0x54 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32/avr5/crtatmega32.o
                 0x00000000                __vector_default
@@ -619,147 +619,147 @@ END GROUP
  .text.AirCond_EN
                 0x0000034a       0xd6 App/main.o
                 0x0000034a                AirCond_EN
- .text.main     0x00000420      0x8fe App/main.o
+ .text.main     0x00000420      0x8ca App/main.o
                 0x00000420                main
  .text.H_Buzzer_Init
-                0x00000d1e        0xa Hal/Buzzer/Buzzer.o
-                0x00000d1e                H_Buzzer_Init
+                0x00000cea        0xa Hal/Buzzer/Buzzer.o
+                0x00000cea                H_Buzzer_Init
  .text.H_Buzzer_On
-                0x00000d28        0xa Hal/Buzzer/Buzzer.o
-                0x00000d28                H_Buzzer_On
+                0x00000cf4        0xa Hal/Buzzer/Buzzer.o
+                0x00000cf4                H_Buzzer_On
  .text.EEPROMINT_WriteByte
-                0x00000d32       0x32 Hal/EEPROM/EEPROM_program.o
-                0x00000d32                EEPROMINT_WriteByte
+                0x00000cfe       0x32 Hal/EEPROM/EEPROM_program.o
+                0x00000cfe                EEPROMINT_WriteByte
  .text.EEPROMINT_ReadByte
-                0x00000d64       0x22 Hal/EEPROM/EEPROM_program.o
-                0x00000d64                EEPROMINT_ReadByte
+                0x00000d30       0x22 Hal/EEPROM/EEPROM_program.o
+                0x00000d30                EEPROMINT_ReadByte
  .text.HC05_Init
-                0x00000d86        0x6 Hal/HC-05/HC05.o
-                0x00000d86                HC05_Init
- .text.HC05_Rx  0x00000d8c        0x6 Hal/HC-05/HC05.o
-                0x00000d8c                HC05_Rx
+                0x00000d52        0x6 Hal/HC-05/HC05.o
+                0x00000d52                HC05_Init
+ .text.HC05_Rx  0x00000d58        0x6 Hal/HC-05/HC05.o
+                0x00000d58                HC05_Rx
  .text.H_H_Bridge_Init
-                0x00000d92       0x32 Hal/H_Bridge/H_Bridge.o
-                0x00000d92                H_H_Bridge_Init
+                0x00000d5e       0x32 Hal/H_Bridge/H_Bridge.o
+                0x00000d5e                H_H_Bridge_Init
  .text.H_H_Bridge_CH1_EN
-                0x00000dc4       0x1a Hal/H_Bridge/H_Bridge.o
-                0x00000dc4                H_H_Bridge_CH1_EN
+                0x00000d90       0x1a Hal/H_Bridge/H_Bridge.o
+                0x00000d90                H_H_Bridge_CH1_EN
  .text.H_H_Bridge_CH1_Break
-                0x00000dde       0x1a Hal/H_Bridge/H_Bridge.o
-                0x00000dde                H_H_Bridge_CH1_Break
+                0x00000daa       0x1a Hal/H_Bridge/H_Bridge.o
+                0x00000daa                H_H_Bridge_CH1_Break
  .text.H_KeyPad_Init
-                0x00000df8       0x82 Hal/KeyPad/KeyPad.o
-                0x00000df8                H_KeyPad_Init
+                0x00000dc4       0x82 Hal/KeyPad/KeyPad.o
+                0x00000dc4                H_KeyPad_Init
  .text.H_KeyPad_Read
-                0x00000e7a       0xc6 Hal/KeyPad/KeyPad.o
-                0x00000e7a                H_KeyPad_Read
+                0x00000e46       0xc6 Hal/KeyPad/KeyPad.o
+                0x00000e46                H_KeyPad_Read
  .text.H_Lcd_WriteCharacter
-                0x00000f40       0x7c Hal/Lcd/Lcd.o
-                0x00000f40                H_Lcd_WriteCharacter
+                0x00000f0c       0x7c Hal/Lcd/Lcd.o
+                0x00000f0c                H_Lcd_WriteCharacter
  .text.H_Lcd_WriteCommand
-                0x00000fbc       0x7c Hal/Lcd/Lcd.o
-                0x00000fbc                H_Lcd_WriteCommand
+                0x00000f88       0x7c Hal/Lcd/Lcd.o
+                0x00000f88                H_Lcd_WriteCommand
  .text.H_Lcd_Init
-                0x00001038       0x78 Hal/Lcd/Lcd.o
-                0x00001038                H_Lcd_Init
+                0x00001004       0x78 Hal/Lcd/Lcd.o
+                0x00001004                H_Lcd_Init
  .text.H_Lcd_WriteString
-                0x000010b0       0x26 Hal/Lcd/Lcd.o
-                0x000010b0                H_Lcd_WriteString
+                0x0000107c       0x26 Hal/Lcd/Lcd.o
+                0x0000107c                H_Lcd_WriteString
  .text.H_Lcd_Clr
-                0x000010d6        0x8 Hal/Lcd/Lcd.o
-                0x000010d6                H_Lcd_Clr
+                0x000010a2        0x8 Hal/Lcd/Lcd.o
+                0x000010a2                H_Lcd_Clr
  .text.H_Lcd_GoTo
-                0x000010de       0x30 Hal/Lcd/Lcd.o
-                0x000010de                H_Lcd_GoTo
+                0x000010aa       0x30 Hal/Lcd/Lcd.o
+                0x000010aa                H_Lcd_GoTo
  .text.H_Led_Init
-                0x0000110e       0x4c Hal/Led/Led.o
-                0x0000110e                H_Led_Init
+                0x000010da       0x4c Hal/Led/Led.o
+                0x000010da                H_Led_Init
  .text.H_Led_On
-                0x0000115a       0x4c Hal/Led/Led.o
-                0x0000115a                H_Led_On
+                0x00001126       0x4c Hal/Led/Led.o
+                0x00001126                H_Led_On
  .text.H_Led_Off
-                0x000011a6       0x4c Hal/Led/Led.o
-                0x000011a6                H_Led_Off
+                0x00001172       0x4c Hal/Led/Led.o
+                0x00001172                H_Led_Off
  .text.M_ADC_INIT
-                0x000011f2       0x26 Mcal/ADC/ADC.o
-                0x000011f2                M_ADC_INIT
+                0x000011be       0x26 Mcal/ADC/ADC.o
+                0x000011be                M_ADC_INIT
  .text.M_ADC_StartConversionAsynch
-                0x00001218       0x52 Mcal/ADC/ADC.o
-                0x00001218                M_ADC_StartConversionAsynch
+                0x000011e4       0x52 Mcal/ADC/ADC.o
+                0x000011e4                M_ADC_StartConversionAsynch
  .text.__vector_16
-                0x0000126a       0x6c Mcal/ADC/ADC.o
-                0x0000126a                __vector_16
+                0x00001236       0x6c Mcal/ADC/ADC.o
+                0x00001236                __vector_16
  .text.M_Dio_PinMode
-                0x000012d6      0x112 Mcal/Dio/Dio.o
-                0x000012d6                M_Dio_PinMode
+                0x000012a2      0x112 Mcal/Dio/Dio.o
+                0x000012a2                M_Dio_PinMode
  .text.M_Dio_PinPullRes
-                0x000013e8      0x112 Mcal/Dio/Dio.o
-                0x000013e8                M_Dio_PinPullRes
+                0x000013b4      0x112 Mcal/Dio/Dio.o
+                0x000013b4                M_Dio_PinPullRes
  .text.M_Dio_PinWrite
-                0x000014fa      0x112 Mcal/Dio/Dio.o
-                0x000014fa                M_Dio_PinWrite
+                0x000014c6      0x112 Mcal/Dio/Dio.o
+                0x000014c6                M_Dio_PinWrite
  .text.M_Dio_PinRead
-                0x0000160c       0x88 Mcal/Dio/Dio.o
-                0x0000160c                M_Dio_PinRead
+                0x000015d8       0x88 Mcal/Dio/Dio.o
+                0x000015d8                M_Dio_PinRead
  .text.M_EXTI_PINMODE
-                0x00001694       0x22 Mcal/EXTI/EXTI.o
-                0x00001694                M_EXTI_PINMODE
+                0x00001660       0x22 Mcal/EXTI/EXTI.o
+                0x00001660                M_EXTI_PINMODE
  .text.M_EXTI_Init
-                0x000016b6       0x36 Mcal/EXTI/EXTI.o
-                0x000016b6                M_EXTI_Init
+                0x00001682       0x36 Mcal/EXTI/EXTI.o
+                0x00001682                M_EXTI_Init
  .text.M_EXTI_CallBack
-                0x000016ec       0x1c Mcal/EXTI/EXTI.o
-                0x000016ec                M_EXTI_CallBack
+                0x000016b8       0x1c Mcal/EXTI/EXTI.o
+                0x000016b8                M_EXTI_CallBack
  .text.__vector_1
-                0x00001708       0x52 Mcal/EXTI/EXTI.o
-                0x00001708                __vector_1
+                0x000016d4       0x52 Mcal/EXTI/EXTI.o
+                0x000016d4                __vector_1
  .text.__vector_2
-                0x0000175a       0x52 Mcal/EXTI/EXTI.o
-                0x0000175a                __vector_2
+                0x00001726       0x52 Mcal/EXTI/EXTI.o
+                0x00001726                __vector_2
  .text.__vector_3
-                0x000017ac       0x52 Mcal/EXTI/EXTI.o
-                0x000017ac                __vector_3
+                0x00001778       0x52 Mcal/EXTI/EXTI.o
+                0x00001778                __vector_3
  .text.M_GIE_EnableGlobal
-                0x000017fe        0x4 Mcal/GIE/GIE.o
-                0x000017fe                M_GIE_EnableGlobal
+                0x000017ca        0x4 Mcal/GIE/GIE.o
+                0x000017ca                M_GIE_EnableGlobal
  .text.TIMER0_Init
-                0x00001802       0x2a Mcal/TIMER/TIMER.o
-                0x00001802                TIMER0_Init
+                0x000017ce       0x2a Mcal/TIMER/TIMER.o
+                0x000017ce                TIMER0_Init
  .text.TIMER0_SetCompVal
-                0x0000182c        0x4 Mcal/TIMER/TIMER.o
-                0x0000182c                TIMER0_SetCompVal
+                0x000017f8        0x4 Mcal/TIMER/TIMER.o
+                0x000017f8                TIMER0_SetCompVal
  .text.__vector_11
-                0x00001830       0x76 Mcal/TIMER/TIMER.o
-                0x00001830                __vector_11
+                0x000017fc       0x76 Mcal/TIMER/TIMER.o
+                0x000017fc                __vector_11
  .text.TIMER1_Init
-                0x000018a6       0x32 Mcal/TIMER/TIMER.o
-                0x000018a6                TIMER1_Init
+                0x00001872       0x32 Mcal/TIMER/TIMER.o
+                0x00001872                TIMER1_Init
  .text.M_Timer1_CallBackFn
-                0x000018d8        0xa Mcal/TIMER/TIMER.o
-                0x000018d8                M_Timer1_CallBackFn
+                0x000018a4        0xa Mcal/TIMER/TIMER.o
+                0x000018a4                M_Timer1_CallBackFn
  .text.__vector_9
-                0x000018e2       0x52 Mcal/TIMER/TIMER.o
-                0x000018e2                __vector_9
+                0x000018ae       0x52 Mcal/TIMER/TIMER.o
+                0x000018ae                __vector_9
  .text.UART_Init
-                0x00001934       0x24 Mcal/UART/UART.o
-                0x00001934                UART_Init
- .text.UART_Tx  0x00001958        0x8 Mcal/UART/UART.o
-                0x00001958                UART_Tx
- .text.UART_Rx  0x00001960       0x12 Mcal/UART/UART.o
-                0x00001960                UART_Rx
+                0x00001900       0x24 Mcal/UART/UART.o
+                0x00001900                UART_Init
+ .text.UART_Tx  0x00001924        0x8 Mcal/UART/UART.o
+                0x00001924                UART_Tx
+ .text.UART_Rx  0x0000192c       0x12 Mcal/UART/UART.o
+                0x0000192c                UART_Rx
  .text.UART_TxString
-                0x00001972       0x38 Mcal/UART/UART.o
-                0x00001972                UART_TxString
- .text.libgcc   0x000019aa        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
-                0x000019aa                __tablejump2__
+                0x0000193e       0x38 Mcal/UART/UART.o
+                0x0000193e                UART_TxString
+ .text.libgcc   0x00001976        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
+                0x00001976                __tablejump2__
  .text.libgcc.mul
-                0x000019b6       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
-                0x000019b6                __umulhisi3
-                0x000019d4                . = ALIGN (0x2)
+                0x00001982       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
+                0x00001982                __umulhisi3
+                0x000019a0                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000019d4        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x000019d4                _exit
-                0x000019d4                exit
+ .fini9         0x000019a0        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x000019a0                _exit
+                0x000019a0                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -778,11 +778,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000019d4        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x000019a0        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x000019d8                _etext = .
+                0x000019a4                _etext = .
 
-.data           0x00800060      0x2b0 load address 0x000019d8
+.data           0x00800060      0x29a load address 0x000019a4
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -791,59 +791,58 @@ END GROUP
  .rodata        0x00800060       0x10 Hal/KeyPad/KeyPad.o
  *(.rodata*)
  .rodata.str1.1
-                0x00800070      0x29f App/main.o
-                                0x340 (size before relaxing)
+                0x00800070      0x28a App/main.o
+                                0x32b (size before relaxing)
  *(.gnu.linkonce.r*)
-                0x00800310                . = ALIGN (0x2)
- *fill*         0x0080030f        0x1 
-                0x00800310                _edata = .
-                0x00800310                PROVIDE (__data_end, .)
+                0x008002fa                . = ALIGN (0x2)
+                0x008002fa                _edata = .
+                0x008002fa                PROVIDE (__data_end, .)
 
-.bss            0x00800310       0x1b
-                0x00800310                PROVIDE (__bss_start, .)
+.bss            0x008002fa       0x1b
+                0x008002fa                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  .bss.Local_u8_Variable6
-                0x00800310        0x1 App/main.o
-                0x00800310                Local_u8_Variable6
+                0x008002fa        0x1 App/main.o
+                0x008002fa                Local_u8_Variable6
  .bss.Local_u8_Error
-                0x00800311        0x1 App/main.o
+                0x008002fb        0x1 App/main.o
  .bss.Local_u8_Admin
-                0x00800312        0x1 App/main.o
+                0x008002fc        0x1 App/main.o
  .bss.Gloable_u8_AC_Flag
-                0x00800313        0x1 App/main.o
-                0x00800313                Gloable_u8_AC_Flag
+                0x008002fd        0x1 App/main.o
+                0x008002fd                Gloable_u8_AC_Flag
  .bss.Gloable_u16_ADC_Reading
-                0x00800314        0x2 App/main.o
-                0x00800314                Gloable_u16_ADC_Reading
+                0x008002fe        0x2 App/main.o
+                0x008002fe                Gloable_u16_ADC_Reading
  .bss.Global_ADCBusyFlag
-                0x00800316        0x1 Mcal/ADC/ADC.o
+                0x00800300        0x1 Mcal/ADC/ADC.o
  .bss.Global_NotificationFunc
-                0x00800317        0x2 Mcal/ADC/ADC.o
+                0x00800301        0x2 Mcal/ADC/ADC.o
  .bss.Global_PointerResult
-                0x00800319        0x2 Mcal/ADC/ADC.o
+                0x00800303        0x2 Mcal/ADC/ADC.o
  .bss.CallBackFunc
-                0x0080031b        0x6 Mcal/EXTI/EXTI.o
+                0x00800305        0x6 Mcal/EXTI/EXTI.o
  .bss.counter.1616
-                0x00800321        0x2 Mcal/TIMER/TIMER.o
+                0x0080030b        0x2 Mcal/TIMER/TIMER.o
  .bss.TIMER1_OVFCallBackFunc
-                0x00800323        0x2 Mcal/TIMER/TIMER.o
+                0x0080030d        0x2 Mcal/TIMER/TIMER.o
  .bss.TIMER0_OVFCallBackFunc
-                0x00800325        0x2 Mcal/TIMER/TIMER.o
+                0x0080030f        0x2 Mcal/TIMER/TIMER.o
  *(COMMON)
- COMMON         0x00800327        0x4 App/main.o
-                0x00800327                Gloable_u16_Analog_MV
-                0x00800329                Gloable_u8_temp
-                0x0080032a                Local_u8_Variable13
-                0x0080032b                PROVIDE (__bss_end, .)
-                0x000019d8                __data_load_start = LOADADDR (.data)
-                0x00001c88                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x00800311        0x4 App/main.o
+                0x00800311                Gloable_u16_Analog_MV
+                0x00800313                Gloable_u8_temp
+                0x00800314                Local_u8_Variable13
+                0x00800315                PROVIDE (__bss_end, .)
+                0x000019a4                __data_load_start = LOADADDR (.data)
+                0x00001c3e                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x0080032b        0x0
+.noinit         0x00800315        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x0080032b                _end = .
+                0x00800315                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -955,23 +954,23 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x4b23
+.debug_info     0x00000000     0x4aca
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x4e6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32/avr5/crtatmega32.o
- .debug_info    0x000004e6     0x1f18 App/main.o
- .debug_info    0x000023fe      0x37a Hal/Buzzer/Buzzer.o
- .debug_info    0x00002778      0x36a Hal/EEPROM/EEPROM_program.o
- .debug_info    0x00002ae2      0x136 Hal/HC-05/HC05.o
- .debug_info    0x00002c18      0x375 Hal/H_Bridge/H_Bridge.o
- .debug_info    0x00002f8d      0x3c4 Hal/KeyPad/KeyPad.o
- .debug_info    0x00003351      0x765 Hal/Lcd/Lcd.o
- .debug_info    0x00003ab6      0x529 Hal/Led/Led.o
- .debug_info    0x00003fdf      0x1ae Mcal/ADC/ADC.o
- .debug_info    0x0000418d      0x266 Mcal/Dio/Dio.o
- .debug_info    0x000043f3      0x295 Mcal/EXTI/EXTI.o
- .debug_info    0x00004688       0x8e Mcal/GIE/GIE.o
- .debug_info    0x00004716      0x205 Mcal/TIMER/TIMER.o
- .debug_info    0x0000491b      0x208 Mcal/UART/UART.o
+ .debug_info    0x000004e6     0x1ebf App/main.o
+ .debug_info    0x000023a5      0x37a Hal/Buzzer/Buzzer.o
+ .debug_info    0x0000271f      0x36a Hal/EEPROM/EEPROM_program.o
+ .debug_info    0x00002a89      0x136 Hal/HC-05/HC05.o
+ .debug_info    0x00002bbf      0x375 Hal/H_Bridge/H_Bridge.o
+ .debug_info    0x00002f34      0x3c4 Hal/KeyPad/KeyPad.o
+ .debug_info    0x000032f8      0x765 Hal/Lcd/Lcd.o
+ .debug_info    0x00003a5d      0x529 Hal/Led/Led.o
+ .debug_info    0x00003f86      0x1ae Mcal/ADC/ADC.o
+ .debug_info    0x00004134      0x266 Mcal/Dio/Dio.o
+ .debug_info    0x0000439a      0x295 Mcal/EXTI/EXTI.o
+ .debug_info    0x0000462f       0x8e Mcal/GIE/GIE.o
+ .debug_info    0x000046bd      0x205 Mcal/TIMER/TIMER.o
+ .debug_info    0x000048c2      0x208 Mcal/UART/UART.o
 
 .debug_abbrev   0x00000000     0x1302
  *(.debug_abbrev)
@@ -991,23 +990,23 @@ END GROUP
  .debug_abbrev  0x000010a4       0xe9 Mcal/TIMER/TIMER.o
  .debug_abbrev  0x0000118d      0x175 Mcal/UART/UART.o
 
-.debug_line     0x00000000     0x292d
+.debug_line     0x00000000     0x28f8
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x116 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32/avr5/crtatmega32.o
- .debug_line    0x00000116      0xe4f App/main.o
- .debug_line    0x00000f65      0x21b Hal/Buzzer/Buzzer.o
- .debug_line    0x00001180      0x273 Hal/EEPROM/EEPROM_program.o
- .debug_line    0x000013f3       0xa3 Hal/HC-05/HC05.o
- .debug_line    0x00001496      0x14d Hal/H_Bridge/H_Bridge.o
- .debug_line    0x000015e3      0x234 Hal/KeyPad/KeyPad.o
- .debug_line    0x00001817      0x38b Hal/Lcd/Lcd.o
- .debug_line    0x00001ba2      0x27d Hal/Led/Led.o
- .debug_line    0x00001e1f      0x1a6 Mcal/ADC/ADC.o
- .debug_line    0x00001fc5      0x263 Mcal/Dio/Dio.o
- .debug_line    0x00002228      0x31f Mcal/EXTI/EXTI.o
- .debug_line    0x00002547       0x5b Mcal/GIE/GIE.o
- .debug_line    0x000025a2      0x1b4 Mcal/TIMER/TIMER.o
- .debug_line    0x00002756      0x1d7 Mcal/UART/UART.o
+ .debug_line    0x00000116      0xe1a App/main.o
+ .debug_line    0x00000f30      0x21b Hal/Buzzer/Buzzer.o
+ .debug_line    0x0000114b      0x273 Hal/EEPROM/EEPROM_program.o
+ .debug_line    0x000013be       0xa3 Hal/HC-05/HC05.o
+ .debug_line    0x00001461      0x14d Hal/H_Bridge/H_Bridge.o
+ .debug_line    0x000015ae      0x234 Hal/KeyPad/KeyPad.o
+ .debug_line    0x000017e2      0x38b Hal/Lcd/Lcd.o
+ .debug_line    0x00001b6d      0x27d Hal/Led/Led.o
+ .debug_line    0x00001dea      0x1a6 Mcal/ADC/ADC.o
+ .debug_line    0x00001f90      0x263 Mcal/Dio/Dio.o
+ .debug_line    0x000021f3      0x31f Mcal/EXTI/EXTI.o
+ .debug_line    0x00002512       0x5b Mcal/GIE/GIE.o
+ .debug_line    0x0000256d      0x1b4 Mcal/TIMER/TIMER.o
+ .debug_line    0x00002721      0x1d7 Mcal/UART/UART.o
 
 .debug_frame    0x00000000      0x8ec
  *(.debug_frame)
@@ -1058,20 +1057,20 @@ END GROUP
  .debug_str     0x00000f73       0x4b Mcal/UART/UART.o
                                 0x286 (size before relaxing)
 
-.debug_loc      0x00000000     0x2963
+.debug_loc      0x00000000     0x296e
  *(.debug_loc)
- .debug_loc     0x00000000      0xec1 App/main.o
- .debug_loc     0x00000ec1      0x168 Hal/Buzzer/Buzzer.o
- .debug_loc     0x00001029      0x235 Hal/EEPROM/EEPROM_program.o
- .debug_loc     0x0000125e       0x21 Hal/HC-05/HC05.o
- .debug_loc     0x0000127f      0x149 Hal/KeyPad/KeyPad.o
- .debug_loc     0x000013c8      0x552 Hal/Lcd/Lcd.o
- .debug_loc     0x0000191a      0x3a3 Hal/Led/Led.o
- .debug_loc     0x00001cbd      0x22b Mcal/ADC/ADC.o
- .debug_loc     0x00001ee8      0x2f1 Mcal/Dio/Dio.o
- .debug_loc     0x000021d9      0x4fc Mcal/EXTI/EXTI.o
- .debug_loc     0x000026d5      0x196 Mcal/TIMER/TIMER.o
- .debug_loc     0x0000286b       0xf8 Mcal/UART/UART.o
+ .debug_loc     0x00000000      0xecc App/main.o
+ .debug_loc     0x00000ecc      0x168 Hal/Buzzer/Buzzer.o
+ .debug_loc     0x00001034      0x235 Hal/EEPROM/EEPROM_program.o
+ .debug_loc     0x00001269       0x21 Hal/HC-05/HC05.o
+ .debug_loc     0x0000128a      0x149 Hal/KeyPad/KeyPad.o
+ .debug_loc     0x000013d3      0x552 Hal/Lcd/Lcd.o
+ .debug_loc     0x00001925      0x3a3 Hal/Led/Led.o
+ .debug_loc     0x00001cc8      0x22b Mcal/ADC/ADC.o
+ .debug_loc     0x00001ef3      0x2f1 Mcal/Dio/Dio.o
+ .debug_loc     0x000021e4      0x4fc Mcal/EXTI/EXTI.o
+ .debug_loc     0x000026e0      0x196 Mcal/TIMER/TIMER.o
+ .debug_loc     0x00002876       0xf8 Mcal/UART/UART.o
 
 .debug_macinfo
  *(.debug_macinfo)
