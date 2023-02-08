@@ -32,10 +32,10 @@ void H_KeyPad_Init(void)
 }
 u8 H_KeyPad_Read(void)
 {
-	u8 Local_u8_Arr[4][4]={{'7','8','9','A'},
-		                   {'4','5','6','*'},
-		                   {'1','2','3','-'},
-		                   {'c','0','=','+'}};
+	u8 Local_u8_Arr[4][4]={{'1','2','3','A'},
+		                   {'4','5','6','B'},
+		                   {'7','8','9','C'},
+		                   {'*','0','=','D'}};
 	u8 Local_u8_Reading = KEYPAD_RELEASED ;
 	u8 Local_u8_Value = 0 ;
 	u8 Local_u8_Row = 0 ;

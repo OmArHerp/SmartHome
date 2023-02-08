@@ -579,6 +579,7 @@ else if (Local_u8_Mode == USER_MODE)
 		
 		/*Taking the ID*/
 		H_Lcd_WriteString("ID:");
+		H_Lcd_GoTo(1,0);
 		while(Local_u8_ID)
 		{
 			Local_u8_Variable11 = H_KeyPad_Read();
@@ -588,6 +589,7 @@ else if (Local_u8_Mode == USER_MODE)
 				_delay_ms(750);
 				H_Lcd_Clr();
 				H_Lcd_WriteString("ID:");
+				H_Lcd_GoTo(1,0);
 			}
 			else if(Local_u8_Variable11 == '=')
 			{
@@ -614,7 +616,6 @@ else if (Local_u8_Mode == USER_MODE)
 		while(!Local_u8_ID)
 		{
 			Local_u8_Variable12 = H_KeyPad_Read();
-			/*Checking if there's an error */
 			if((Local_u8_Variable12 == '=') && (Local_u8_Error == ERROR))
 			{
 				H_Lcd_WriteString("Error please try again");
@@ -633,7 +634,7 @@ else if (Local_u8_Mode == USER_MODE)
 			/*Enter the password you want untill 'ENTER'*/
 			else if(Local_u8_Variable12 != '=')
 			{
-				Local_u8_Error = 1; //No error so don't check if there's  again
+				Local_u8_Error = NO_ERROR;
 				Local_u8_IDAndPass[Local_u8_counter] = Local_u8_Variable12;
 				H_Lcd_WriteCharacter(Local_u8_IDAndPass[Local_u8_counter]);
 				Local_u8_counter++;
@@ -706,13 +707,9 @@ else if (Local_u8_Mode == USER_MODE)
 	}
 	
 	H_Lcd_Clr();
-	H_Lcd_WriteString("Welcome");
-	_delay_ms(500);
-	H_Lcd_WriteString("MENU");
-	
 	while(1)
 	{
-		//MENU
+		H_Lcd_WriteString("MENU"); //MENU
 	}
 	
 }
