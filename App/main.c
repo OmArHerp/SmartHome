@@ -13,7 +13,7 @@ void LCD_Welcome(void);
 void ADC_ISR(void);
 void TimerISR(void);
 void X_ISR(void);
-/***********************************************************GLOBAL_VARIABLES****************************************************************/
+/*************************************************************GLOBAL_VARIABLES****************************************************************/
 u16 Gloable_u16_ADC_Reading =0		 ;
 u16 Gloable_u16_Analog_MV			 ;
 u8  Gloable_u8_temp					 ;
