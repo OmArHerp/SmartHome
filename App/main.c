@@ -562,8 +562,9 @@ int main(void)
 /************************************************** USER_MODE***************************************************************************************/
 else if (Local_u8_Mode == USER_MODE)
 {     
-	H_Lcd_WriteNumber(55);
-	
+	H_Lcd_WriteString("Welcome");
+	_delay_ms(DISPLAY_TIME);
+	H_Lcd_Clr();
 	Local_u8_EEPROM = 0;
 	Local_u8_counter = 0;
 	Local_u8_ID = 1;
