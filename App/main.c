@@ -856,7 +856,7 @@ void TimerISR(void)
 	AirCond_control();
 	if(Gloable_u8_AC_Flag == AC_ON)
 	{
-		if(Gloable_u8_temp > 27)
+		if(Gloable_u8_temp > 28)
 		{
 			H_H_Bridge_CH1_EN();
 		}
