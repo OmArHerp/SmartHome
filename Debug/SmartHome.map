@@ -1031,36 +1031,36 @@ END GROUP
  .debug_frame   0x00000744      0x144 Mcal/TIMER/TIMER.o
  .debug_frame   0x00000888       0x64 Mcal/UART/UART.o
 
-.debug_str      0x00000000      0xf6d
+.debug_str      0x00000000      0xf99
  *(.debug_str)
  .debug_str     0x00000000      0x196 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32/avr5/crtatmega32.o
- .debug_str     0x00000196      0x6df App/main.o
-                                0x721 (size before relaxing)
- .debug_str     0x00000875       0xc0 Hal/Buzzer/Buzzer.o
+ .debug_str     0x00000196      0x69b App/main.o
+                                0x6dd (size before relaxing)
+ .debug_str     0x00000831       0xc0 Hal/Buzzer/Buzzer.o
                                 0x277 (size before relaxing)
- .debug_str     0x00000935      0x115 Hal/EEPROM/EEPROM_program.o
+ .debug_str     0x000008f1      0x115 Hal/EEPROM/EEPROM_program.o
                                 0x2f2 (size before relaxing)
- .debug_str     0x00000a4a       0x3a Hal/HC-05/HC05.o
+ .debug_str     0x00000a06       0x3a Hal/HC-05/HC05.o
                                 0x1c6 (size before relaxing)
- .debug_str     0x00000a84       0x82 Hal/H_Bridge/H_Bridge.o
+ .debug_str     0x00000a40       0x82 Hal/H_Bridge/H_Bridge.o
                                 0x216 (size before relaxing)
- .debug_str     0x00000b06       0x7d Hal/KeyPad/KeyPad.o
+ .debug_str     0x00000ac2       0xed Hal/KeyPad/KeyPad.o
                                 0x2af (size before relaxing)
- .debug_str     0x00000b83       0xb8 Hal/Lcd/Lcd.o
+ .debug_str     0x00000baf       0xb8 Hal/Lcd/Lcd.o
                                 0x314 (size before relaxing)
- .debug_str     0x00000c3b       0x49 Hal/Led/Led.o
+ .debug_str     0x00000c67       0x49 Hal/Led/Led.o
                                 0x281 (size before relaxing)
- .debug_str     0x00000c84       0xb5 Mcal/ADC/ADC.o
+ .debug_str     0x00000cb0       0xb5 Mcal/ADC/ADC.o
                                 0x22d (size before relaxing)
- .debug_str     0x00000d39       0x6d Mcal/Dio/Dio.o
+ .debug_str     0x00000d65       0x6d Mcal/Dio/Dio.o
                                 0x213 (size before relaxing)
- .debug_str     0x00000da6       0x9f Mcal/EXTI/EXTI.o
+ .debug_str     0x00000dd2       0x9f Mcal/EXTI/EXTI.o
                                 0x27e (size before relaxing)
- .debug_str     0x00000e45       0x26 Mcal/GIE/GIE.o
+ .debug_str     0x00000e71       0x26 Mcal/GIE/GIE.o
                                 0x179 (size before relaxing)
- .debug_str     0x00000e6b       0xb7 Mcal/TIMER/TIMER.o
+ .debug_str     0x00000e97       0xb7 Mcal/TIMER/TIMER.o
                                 0x252 (size before relaxing)
- .debug_str     0x00000f22       0x4b Mcal/UART/UART.o
+ .debug_str     0x00000f4e       0x4b Mcal/UART/UART.o
                                 0x286 (size before relaxing)
 
 .debug_loc      0x00000000     0x28f0

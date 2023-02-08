@@ -23,11 +23,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   9 .debug_frame  000008ec  00000000  00000000  0000a8cc  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000f6d  00000000  00000000  0000b1b8  2**0
+ 10 .debug_str    00000f99  00000000  00000000  0000b1b8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000028f0  00000000  00000000  0000c125  2**0
+ 11 .debug_loc    000028f0  00000000  00000000  0000c151  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000330  00000000  00000000  0000ea15  2**0
+ 12 .debug_ranges 00000330  00000000  00000000  0000ea41  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -694,7 +694,7 @@ int main(void)
      430:	0f be       	out	0x3f, r0	; 63
      432:	cd bf       	out	0x3d, r28	; 61
 	
-	/******************************************************INITS***********************************************************/
+	/*****************************************************INITS***********************************************************/
 	//H_KeyPad_Init();
 	H_Lcd_Init();
      434:	0e 94 04 08 	call	0x1008	; 0x1008 <H_Lcd_Init>
@@ -1302,7 +1302,7 @@ int main(void)
      768:	8d e0       	ldi	r24, 0x0D	; 13
      76a:	0e 94 00 0d 	call	0x1a00	; 0x1a00 <UART_Tx>
 							 switch(Local_u8_Trials)
-     76e:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__data_start>
+     76e:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
      772:	82 30       	cpi	r24, 0x02	; 2
      774:	69 f0       	breq	.+26     	; 0x790 <main+0x370>
      776:	83 30       	cpi	r24, 0x03	; 3
@@ -1367,9 +1367,9 @@ int main(void)
 					 Local_u8_counter = RESET;
 					 Local_u8_ID = TAKE_ID; //RESETTING IT TO DEFAULT --> PREPARING TO LOOP AGAIN
 					 --Local_u8_Trials;
-     7ca:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__data_start>
+     7ca:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
      7ce:	81 50       	subi	r24, 0x01	; 1
-     7d0:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__data_start>
+     7d0:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
 		 if(Local_u8_Mode == ADMIN_MODE)
 		 {
 			 UART_TxString(" Log In");
@@ -1999,7 +1999,7 @@ else if (Local_u8_Mode == USER_MODE)
 	Local_u8_Wrong == 10;
 	Local_u8_Trials = 3;
      ad4:	83 e0       	ldi	r24, 0x03	; 3
-     ad6:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__data_start>
+     ad6:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
 		{
 			break;
 		}
@@ -2268,7 +2268,7 @@ else if (Local_u8_Mode == USER_MODE)
      c5c:	81 e0       	ldi	r24, 0x01	; 1
      c5e:	0e 94 c3 08 	call	0x1186	; 0x1186 <H_Lcd_GoTo>
 					switch(Local_u8_Trials)
-     c62:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__data_start>
+     c62:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
      c66:	82 30       	cpi	r24, 0x02	; 2
      c68:	a9 f0       	breq	.+42     	; 0xc94 <__stack+0x435>
      c6a:	83 30       	cpi	r24, 0x03	; 3
@@ -2351,9 +2351,9 @@ else if (Local_u8_Mode == USER_MODE)
 			Local_u8_counter = 0;
 			Local_u8_ID = 1;
 			--Local_u8_Trials;
-     ce2:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__data_start>
+     ce2:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
      ce6:	81 50       	subi	r24, 0x01	; 1
-     ce8:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__data_start>
+     ce8:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
 			break;
 		}
 	}
@@ -2471,86 +2471,57 @@ else if (Local_u8_Mode == USER_MODE)
      dc6:	08 95       	ret
 
 00000dc8 <H_KeyPad_Init>:
- */ 
-#include "KeyPad.h"
-
-void H_KeyPad_Init(void)
-{
-	M_Dio_PinMode(KEYPAD_R0_PIN,OUTPUT);
      dc8:	61 e0       	ldi	r22, 0x01	; 1
      dca:	88 e1       	ldi	r24, 0x18	; 24
      dcc:	0e 94 bf 09 	call	0x137e	; 0x137e <M_Dio_PinMode>
-	M_Dio_PinMode(KEYPAD_R1_PIN,OUTPUT);
      dd0:	61 e0       	ldi	r22, 0x01	; 1
      dd2:	89 e1       	ldi	r24, 0x19	; 25
      dd4:	0e 94 bf 09 	call	0x137e	; 0x137e <M_Dio_PinMode>
-	M_Dio_PinMode(KEYPAD_R2_PIN,OUTPUT);
      dd8:	61 e0       	ldi	r22, 0x01	; 1
      dda:	8a e1       	ldi	r24, 0x1A	; 26
      ddc:	0e 94 bf 09 	call	0x137e	; 0x137e <M_Dio_PinMode>
-	M_Dio_PinMode(KEYPAD_R3_PIN,OUTPUT);
      de0:	61 e0       	ldi	r22, 0x01	; 1
      de2:	8b e1       	ldi	r24, 0x1B	; 27
      de4:	0e 94 bf 09 	call	0x137e	; 0x137e <M_Dio_PinMode>
-	
-	M_Dio_PinMode(KEYPAD_C0_PIN,INPUT);
      de8:	62 e0       	ldi	r22, 0x02	; 2
      dea:	8e e1       	ldi	r24, 0x1E	; 30
      dec:	0e 94 bf 09 	call	0x137e	; 0x137e <M_Dio_PinMode>
-	M_Dio_PinMode(KEYPAD_C1_PIN,INPUT);
      df0:	62 e0       	ldi	r22, 0x02	; 2
      df2:	8f e1       	ldi	r24, 0x1F	; 31
      df4:	0e 94 bf 09 	call	0x137e	; 0x137e <M_Dio_PinMode>
-	M_Dio_PinMode(KEYPAD_C2_PIN,INPUT);
      df8:	62 e0       	ldi	r22, 0x02	; 2
      dfa:	80 e2       	ldi	r24, 0x20	; 32
      dfc:	0e 94 bf 09 	call	0x137e	; 0x137e <M_Dio_PinMode>
-	M_Dio_PinMode(KEYPAD_C3_PIN,INPUT);
      e00:	62 e0       	ldi	r22, 0x02	; 2
      e02:	81 e2       	ldi	r24, 0x21	; 33
      e04:	0e 94 bf 09 	call	0x137e	; 0x137e <M_Dio_PinMode>
-	
-	M_Dio_PinWrite(KEYPAD_R0_PIN,HIGH);
      e08:	61 e0       	ldi	r22, 0x01	; 1
      e0a:	88 e1       	ldi	r24, 0x18	; 24
      e0c:	0e 94 d1 0a 	call	0x15a2	; 0x15a2 <M_Dio_PinWrite>
-	M_Dio_PinWrite(KEYPAD_R1_PIN,HIGH);
      e10:	61 e0       	ldi	r22, 0x01	; 1
      e12:	89 e1       	ldi	r24, 0x19	; 25
      e14:	0e 94 d1 0a 	call	0x15a2	; 0x15a2 <M_Dio_PinWrite>
-	M_Dio_PinWrite(KEYPAD_R2_PIN,HIGH);
      e18:	61 e0       	ldi	r22, 0x01	; 1
      e1a:	8a e1       	ldi	r24, 0x1A	; 26
      e1c:	0e 94 d1 0a 	call	0x15a2	; 0x15a2 <M_Dio_PinWrite>
-	M_Dio_PinWrite(KEYPAD_R3_PIN,HIGH);
      e20:	61 e0       	ldi	r22, 0x01	; 1
      e22:	8b e1       	ldi	r24, 0x1B	; 27
      e24:	0e 94 d1 0a 	call	0x15a2	; 0x15a2 <M_Dio_PinWrite>
-	
-	M_Dio_PinPullRes(KEYPAD_C0_PIN,ENABLE);
      e28:	61 e0       	ldi	r22, 0x01	; 1
      e2a:	8e e1       	ldi	r24, 0x1E	; 30
      e2c:	0e 94 48 0a 	call	0x1490	; 0x1490 <M_Dio_PinPullRes>
-	M_Dio_PinPullRes(KEYPAD_C1_PIN,ENABLE);
      e30:	61 e0       	ldi	r22, 0x01	; 1
      e32:	8f e1       	ldi	r24, 0x1F	; 31
      e34:	0e 94 48 0a 	call	0x1490	; 0x1490 <M_Dio_PinPullRes>
-	M_Dio_PinPullRes(KEYPAD_C2_PIN,ENABLE);
      e38:	61 e0       	ldi	r22, 0x01	; 1
      e3a:	80 e2       	ldi	r24, 0x20	; 32
      e3c:	0e 94 48 0a 	call	0x1490	; 0x1490 <M_Dio_PinPullRes>
-	M_Dio_PinPullRes(KEYPAD_C3_PIN,ENABLE);
      e40:	61 e0       	ldi	r22, 0x01	; 1
      e42:	81 e2       	ldi	r24, 0x21	; 33
      e44:	0e 94 48 0a 	call	0x1490	; 0x1490 <M_Dio_PinPullRes>
      e48:	08 95       	ret
 
 00000e4a <H_KeyPad_Read>:
-
-
-}
-u8 H_KeyPad_Read(void)
-{
      e4a:	ff 92       	push	r15
      e4c:	0f 93       	push	r16
      e4e:	1f 93       	push	r17
@@ -2564,7 +2535,6 @@ u8 H_KeyPad_Read(void)
      e5e:	de bf       	out	0x3e, r29	; 62
      e60:	0f be       	out	0x3f, r0	; 63
      e62:	cd bf       	out	0x3d, r28	; 61
-	u8 Local_u8_Arr[4][4]={{'7','8','9','A'},
      e64:	80 e1       	ldi	r24, 0x10	; 16
      e66:	e1 e6       	ldi	r30, 0x61	; 97
      e68:	f0 e0       	ldi	r31, 0x00	; 0
@@ -2574,37 +2544,16 @@ u8 H_KeyPad_Read(void)
      e70:	0d 92       	st	X+, r0
      e72:	8a 95       	dec	r24
      e74:	e1 f7       	brne	.-8      	; 0xe6e <H_KeyPad_Read+0x24>
-		                   {'c','0','=','+'}};
-	u8 Local_u8_Reading = KEYPAD_RELEASED ;
-	u8 Local_u8_Value = 0 ;
-	u8 Local_u8_Row = 0 ;
-	u8 Local_u8_Col = 0 ;
-	for(Local_u8_Row=KEYPAD_R0_PIN;Local_u8_Row<=KEYPAD_R3_PIN;Local_u8_Row++)
      e76:	08 e1       	ldi	r16, 0x18	; 24
-	u8 Local_u8_Arr[4][4]={{'7','8','9','A'},
-		                   {'4','5','6','*'},
-		                   {'1','2','3','-'},
-		                   {'c','0','=','+'}};
-	u8 Local_u8_Reading = KEYPAD_RELEASED ;
-	u8 Local_u8_Value = 0 ;
      e78:	f1 2c       	mov	r15, r1
-	u8 Local_u8_Row = 0 ;
-	u8 Local_u8_Col = 0 ;
-	for(Local_u8_Row=KEYPAD_R0_PIN;Local_u8_Row<=KEYPAD_R3_PIN;Local_u8_Row++)
      e7a:	3b c0       	rjmp	.+118    	; 0xef2 <H_KeyPad_Read+0xa8>
-	{
-		M_Dio_PinWrite(Local_u8_Row,LOW);
      e7c:	62 e0       	ldi	r22, 0x02	; 2
      e7e:	80 2f       	mov	r24, r16
      e80:	0e 94 d1 0a 	call	0x15a2	; 0x15a2 <M_Dio_PinWrite>
-		for(Local_u8_Col = KEYPAD_C0_PIN;Local_u8_Col<=KEYPAD_C3_PIN;Local_u8_Col++)
      e84:	1e e1       	ldi	r17, 0x1E	; 30
      e86:	2e c0       	rjmp	.+92     	; 0xee4 <H_KeyPad_Read+0x9a>
-		{
-			Local_u8_Reading= M_Dio_PinRead(Local_u8_Col);
      e88:	81 2f       	mov	r24, r17
      e8a:	0e 94 5a 0b 	call	0x16b4	; 0x16b4 <M_Dio_PinRead>
-			if(Local_u8_Reading == KEYPAD_PRESSED)
      e8e:	81 11       	cpse	r24, r1
      e90:	28 c0       	rjmp	.+80     	; 0xee2 <H_KeyPad_Read+0x98>
      e92:	2f ef       	ldi	r18, 0xFF	; 255
@@ -2616,20 +2565,14 @@ u8 H_KeyPad_Read(void)
      e9e:	e1 f7       	brne	.-8      	; 0xe98 <H_KeyPad_Read+0x4e>
      ea0:	00 c0       	rjmp	.+0      	; 0xea2 <H_KeyPad_Read+0x58>
      ea2:	00 00       	nop
-			{
-				_delay_ms(KEYPAD_DEBOUNCING_TIME);
-				if(M_Dio_PinRead(Local_u8_Col) == KEYPAD_PRESSED)
      ea4:	81 2f       	mov	r24, r17
      ea6:	0e 94 5a 0b 	call	0x16b4	; 0x16b4 <M_Dio_PinRead>
      eaa:	81 11       	cpse	r24, r1
      eac:	1a c0       	rjmp	.+52     	; 0xee2 <H_KeyPad_Read+0x98>
-				{
-					while(M_Dio_PinRead(Local_u8_Col) == KEYPAD_PRESSED);//remove it if u want it to write reapidly
      eae:	81 2f       	mov	r24, r17
      eb0:	0e 94 5a 0b 	call	0x16b4	; 0x16b4 <M_Dio_PinRead>
      eb4:	88 23       	and	r24, r24
      eb6:	d9 f3       	breq	.-10     	; 0xeae <H_KeyPad_Read+0x64>
-							Local_u8_Value = Local_u8_Arr[Local_u8_Row - KEYPAD_R0_PIN][Local_u8_Col - KEYPAD_C0_PIN];
      eb8:	80 2f       	mov	r24, r16
      eba:	90 e0       	ldi	r25, 0x00	; 0
      ebc:	48 97       	sbiw	r24, 0x18	; 24
@@ -2651,38 +2594,15 @@ u8 H_KeyPad_Read(void)
      edc:	e2 0f       	add	r30, r18
      ede:	f3 1f       	adc	r31, r19
      ee0:	f0 80       	ld	r15, Z
-	u8 Local_u8_Row = 0 ;
-	u8 Local_u8_Col = 0 ;
-	for(Local_u8_Row=KEYPAD_R0_PIN;Local_u8_Row<=KEYPAD_R3_PIN;Local_u8_Row++)
-	{
-		M_Dio_PinWrite(Local_u8_Row,LOW);
-		for(Local_u8_Col = KEYPAD_C0_PIN;Local_u8_Col<=KEYPAD_C3_PIN;Local_u8_Col++)
      ee2:	1f 5f       	subi	r17, 0xFF	; 255
      ee4:	12 32       	cpi	r17, 0x22	; 34
      ee6:	80 f2       	brcs	.-96     	; 0xe88 <H_KeyPad_Read+0x3e>
-				
-			}
-
-		}
-
-		M_Dio_PinWrite(Local_u8_Row,HIGH);
      ee8:	61 e0       	ldi	r22, 0x01	; 1
      eea:	80 2f       	mov	r24, r16
      eec:	0e 94 d1 0a 	call	0x15a2	; 0x15a2 <M_Dio_PinWrite>
-		                   {'c','0','=','+'}};
-	u8 Local_u8_Reading = KEYPAD_RELEASED ;
-	u8 Local_u8_Value = 0 ;
-	u8 Local_u8_Row = 0 ;
-	u8 Local_u8_Col = 0 ;
-	for(Local_u8_Row=KEYPAD_R0_PIN;Local_u8_Row<=KEYPAD_R3_PIN;Local_u8_Row++)
      ef0:	0f 5f       	subi	r16, 0xFF	; 255
      ef2:	0c 31       	cpi	r16, 0x1C	; 28
      ef4:	18 f2       	brcs	.-122    	; 0xe7c <H_KeyPad_Read+0x32>
-
-		M_Dio_PinWrite(Local_u8_Row,HIGH);
-	}
-	
-	return Local_u8_Value;  // if the user click return 0 otherwise return 1
      ef6:	8f 2d       	mov	r24, r15
      ef8:	60 96       	adiw	r28, 0x10	; 16
      efa:	0f b6       	in	r0, 0x3f	; 63
@@ -3020,12 +2940,6 @@ u8 H_KeyPad_Read(void)
     11b4:	08 95       	ret
 
 000011b6 <H_Led_Init>:
- */ 
-#include "Led.h"
-
-void H_Led_Init(u8 Local_u8_Led)
-{
-	switch(Local_u8_Led)
     11b6:	82 30       	cpi	r24, 0x02	; 2
     11b8:	a9 f0       	breq	.+42     	; 0x11e4 <H_Led_Init+0x2e>
     11ba:	28 f4       	brcc	.+10     	; 0x11c6 <H_Led_Init+0x10>
@@ -3039,40 +2953,28 @@ void H_Led_Init(u8 Local_u8_Led)
     11ca:	84 30       	cpi	r24, 0x04	; 4
     11cc:	a9 f0       	breq	.+42     	; 0x11f8 <H_Led_Init+0x42>
     11ce:	08 95       	ret
-	{
-		case LED0: M_Dio_PinMode(LED0_PIN,OUTPUT); break;
     11d0:	61 e0       	ldi	r22, 0x01	; 1
     11d2:	84 e2       	ldi	r24, 0x24	; 36
     11d4:	0e 94 bf 09 	call	0x137e	; 0x137e <M_Dio_PinMode>
     11d8:	08 95       	ret
-		case LED1: M_Dio_PinMode(LED1_PIN,OUTPUT); break;
     11da:	61 e0       	ldi	r22, 0x01	; 1
     11dc:	85 e2       	ldi	r24, 0x25	; 37
     11de:	0e 94 bf 09 	call	0x137e	; 0x137e <M_Dio_PinMode>
     11e2:	08 95       	ret
-		case LED2: M_Dio_PinMode(LED2_PIN,OUTPUT); break;
     11e4:	61 e0       	ldi	r22, 0x01	; 1
     11e6:	8b e2       	ldi	r24, 0x2B	; 43
     11e8:	0e 94 bf 09 	call	0x137e	; 0x137e <M_Dio_PinMode>
     11ec:	08 95       	ret
-		case LED3: M_Dio_PinMode(LED3_PIN,OUTPUT); break;
     11ee:	61 e0       	ldi	r22, 0x01	; 1
     11f0:	84 e1       	ldi	r24, 0x14	; 20
     11f2:	0e 94 bf 09 	call	0x137e	; 0x137e <M_Dio_PinMode>
     11f6:	08 95       	ret
-		case LED4: M_Dio_PinMode(LED4_PIN,OUTPUT); break;
     11f8:	61 e0       	ldi	r22, 0x01	; 1
     11fa:	8d e2       	ldi	r24, 0x2D	; 45
     11fc:	0e 94 bf 09 	call	0x137e	; 0x137e <M_Dio_PinMode>
     1200:	08 95       	ret
 
 00001202 <H_Led_On>:
-	
-	
-}
-void H_Led_On(u8 Local_u8_Led)
-{
-	switch(Local_u8_Led)
     1202:	82 30       	cpi	r24, 0x02	; 2
     1204:	a9 f0       	breq	.+42     	; 0x1230 <H_Led_On+0x2e>
     1206:	28 f4       	brcc	.+10     	; 0x1212 <H_Led_On+0x10>
@@ -3086,40 +2988,28 @@ void H_Led_On(u8 Local_u8_Led)
     1216:	84 30       	cpi	r24, 0x04	; 4
     1218:	a9 f0       	breq	.+42     	; 0x1244 <H_Led_On+0x42>
     121a:	08 95       	ret
-	{
-		case LED0: M_Dio_PinWrite(LED0_PIN,HIGH); break;
     121c:	61 e0       	ldi	r22, 0x01	; 1
     121e:	84 e2       	ldi	r24, 0x24	; 36
     1220:	0e 94 d1 0a 	call	0x15a2	; 0x15a2 <M_Dio_PinWrite>
     1224:	08 95       	ret
-		case LED1: M_Dio_PinWrite(LED1_PIN,HIGH); break;
     1226:	61 e0       	ldi	r22, 0x01	; 1
     1228:	85 e2       	ldi	r24, 0x25	; 37
     122a:	0e 94 d1 0a 	call	0x15a2	; 0x15a2 <M_Dio_PinWrite>
     122e:	08 95       	ret
-		case LED2: M_Dio_PinWrite(LED2_PIN,HIGH); break;
     1230:	61 e0       	ldi	r22, 0x01	; 1
     1232:	8b e2       	ldi	r24, 0x2B	; 43
     1234:	0e 94 d1 0a 	call	0x15a2	; 0x15a2 <M_Dio_PinWrite>
     1238:	08 95       	ret
-		case LED3: M_Dio_PinWrite(LED3_PIN,HIGH); break;
     123a:	61 e0       	ldi	r22, 0x01	; 1
     123c:	84 e1       	ldi	r24, 0x14	; 20
     123e:	0e 94 d1 0a 	call	0x15a2	; 0x15a2 <M_Dio_PinWrite>
     1242:	08 95       	ret
-		case LED4: M_Dio_PinWrite(LED4_PIN,HIGH); break;
     1244:	61 e0       	ldi	r22, 0x01	; 1
     1246:	8d e2       	ldi	r24, 0x2D	; 45
     1248:	0e 94 d1 0a 	call	0x15a2	; 0x15a2 <M_Dio_PinWrite>
     124c:	08 95       	ret
 
 0000124e <H_Led_Off>:
-	}
-}
-void H_Led_Off(u8 Local_u8_Led)
-{
-	
-	switch(Local_u8_Led)
     124e:	82 30       	cpi	r24, 0x02	; 2
     1250:	a9 f0       	breq	.+42     	; 0x127c <H_Led_Off+0x2e>
     1252:	28 f4       	brcc	.+10     	; 0x125e <H_Led_Off+0x10>
@@ -3133,28 +3023,22 @@ void H_Led_Off(u8 Local_u8_Led)
     1262:	84 30       	cpi	r24, 0x04	; 4
     1264:	a9 f0       	breq	.+42     	; 0x1290 <H_Led_Off+0x42>
     1266:	08 95       	ret
-	{
-		case LED0: M_Dio_PinWrite(LED0_PIN,LOW); break;
     1268:	62 e0       	ldi	r22, 0x02	; 2
     126a:	84 e2       	ldi	r24, 0x24	; 36
     126c:	0e 94 d1 0a 	call	0x15a2	; 0x15a2 <M_Dio_PinWrite>
     1270:	08 95       	ret
-		case LED1: M_Dio_PinWrite(LED1_PIN,LOW); break;
     1272:	62 e0       	ldi	r22, 0x02	; 2
     1274:	85 e2       	ldi	r24, 0x25	; 37
     1276:	0e 94 d1 0a 	call	0x15a2	; 0x15a2 <M_Dio_PinWrite>
     127a:	08 95       	ret
-		case LED2: M_Dio_PinWrite(LED2_PIN,LOW); break;
     127c:	62 e0       	ldi	r22, 0x02	; 2
     127e:	8b e2       	ldi	r24, 0x2B	; 43
     1280:	0e 94 d1 0a 	call	0x15a2	; 0x15a2 <M_Dio_PinWrite>
     1284:	08 95       	ret
-		case LED3: M_Dio_PinWrite(LED3_PIN,LOW); break;
     1286:	62 e0       	ldi	r22, 0x02	; 2
     1288:	84 e1       	ldi	r24, 0x14	; 20
     128a:	0e 94 d1 0a 	call	0x15a2	; 0x15a2 <M_Dio_PinWrite>
     128e:	08 95       	ret
-		case LED4: M_Dio_PinWrite(LED4_PIN,LOW); break;
     1290:	62 e0       	ldi	r22, 0x02	; 2
     1292:	8d e2       	ldi	r24, 0x2D	; 45
     1294:	0e 94 d1 0a 	call	0x15a2	; 0x15a2 <M_Dio_PinWrite>
@@ -3757,12 +3641,6 @@ void H_Led_Off(u8 Local_u8_Led)
     173a:	08 95       	ret
 
 0000173c <M_EXTI_PINMODE>:
-			}
-			break;
-		default: Local_u8_ErrorState = NOK; break;
-	}
-	return Local_u8_ErrorState;
-}
     173c:	62 e0       	ldi	r22, 0x02	; 2
     173e:	8a e2       	ldi	r24, 0x2A	; 42
     1740:	0e 94 bf 09 	call	0x137e	; 0x137e <M_Dio_PinMode>
@@ -3806,19 +3684,11 @@ void H_Led_Off(u8 Local_u8_Led)
     1792:	08 95       	ret
 
 00001794 <M_EXTI_CallBack>:
-
-void M_EXTI_CallBack(u8 IntNum,void (*Copy_pvCallBackFunc)(void))
-{
-	if(Copy_pvCallBackFunc != NULL)
     1794:	61 15       	cp	r22, r1
     1796:	71 05       	cpc	r23, r1
     1798:	51 f0       	breq	.+20     	; 0x17ae <M_EXTI_CallBack+0x1a>
-	{
-		if(IntNum < 3)
     179a:	83 30       	cpi	r24, 0x03	; 3
     179c:	40 f4       	brcc	.+16     	; 0x17ae <M_EXTI_CallBack+0x1a>
-		{
-			CallBackFunc[IntNum] = Copy_pvCallBackFunc;
     179e:	e8 2f       	mov	r30, r24
     17a0:	f0 e0       	ldi	r31, 0x00	; 0
     17a2:	ee 0f       	add	r30, r30
@@ -3830,12 +3700,6 @@ void M_EXTI_CallBack(u8 IntNum,void (*Copy_pvCallBackFunc)(void))
     17ae:	08 95       	ret
 
 000017b0 <__vector_1>:
-
-
-/*INT0 ISR*/
-void __vector_1 (void)		__attribute__((signal, used));
-void __vector_1(void)
-{
     17b0:	1f 92       	push	r1
     17b2:	0f 92       	push	r0
     17b4:	0f b6       	in	r0, 0x3f	; 63
@@ -3853,17 +3717,11 @@ void __vector_1(void)
     17cc:	bf 93       	push	r27
     17ce:	ef 93       	push	r30
     17d0:	ff 93       	push	r31
-	if(CallBackFunc[INT0] != NULL)
     17d2:	e0 91 fe 02 	lds	r30, 0x02FE	; 0x8002fe <CallBackFunc>
     17d6:	f0 91 ff 02 	lds	r31, 0x02FF	; 0x8002ff <CallBackFunc+0x1>
     17da:	30 97       	sbiw	r30, 0x00	; 0
     17dc:	09 f0       	breq	.+2      	; 0x17e0 <__vector_1+0x30>
-	{
-		CallBackFunc[INT0]();
     17de:	09 95       	icall
-	}
-	
-}
     17e0:	ff 91       	pop	r31
     17e2:	ef 91       	pop	r30
     17e4:	bf 91       	pop	r27
@@ -3883,11 +3741,6 @@ void __vector_1(void)
     1800:	18 95       	reti
 
 00001802 <__vector_2>:
-
-/*INT1 ISR*/
-void __vector_2 (void)		__attribute__((signal, used));
-void __vector_2(void)
-{
     1802:	1f 92       	push	r1
     1804:	0f 92       	push	r0
     1806:	0f b6       	in	r0, 0x3f	; 63
@@ -3905,16 +3758,11 @@ void __vector_2(void)
     181e:	bf 93       	push	r27
     1820:	ef 93       	push	r30
     1822:	ff 93       	push	r31
-	if(CallBackFunc[INT1] != NULL)
     1824:	e0 91 00 03 	lds	r30, 0x0300	; 0x800300 <CallBackFunc+0x2>
     1828:	f0 91 01 03 	lds	r31, 0x0301	; 0x800301 <CallBackFunc+0x3>
     182c:	30 97       	sbiw	r30, 0x00	; 0
     182e:	09 f0       	breq	.+2      	; 0x1832 <__vector_2+0x30>
-	{
-		CallBackFunc[INT1]();
     1830:	09 95       	icall
-	}
-}
     1832:	ff 91       	pop	r31
     1834:	ef 91       	pop	r30
     1836:	bf 91       	pop	r27
@@ -3934,11 +3782,6 @@ void __vector_2(void)
     1852:	18 95       	reti
 
 00001854 <__vector_3>:
-
-/*INT2 ISR*/
-void __vector_3 (void)		__attribute__((signal, used));
-void __vector_3(void)
-{
     1854:	1f 92       	push	r1
     1856:	0f 92       	push	r0
     1858:	0f b6       	in	r0, 0x3f	; 63
@@ -3956,16 +3799,11 @@ void __vector_3(void)
     1870:	bf 93       	push	r27
     1872:	ef 93       	push	r30
     1874:	ff 93       	push	r31
-	if(CallBackFunc[INT2] != NULL)
     1876:	e0 91 02 03 	lds	r30, 0x0302	; 0x800302 <CallBackFunc+0x4>
     187a:	f0 91 03 03 	lds	r31, 0x0303	; 0x800303 <CallBackFunc+0x5>
     187e:	30 97       	sbiw	r30, 0x00	; 0
     1880:	09 f0       	breq	.+2      	; 0x1884 <__vector_3+0x30>
-	{
-		CallBackFunc[INT2]();
     1882:	09 95       	icall
-	}
-
     1884:	ff 91       	pop	r31
     1886:	ef 91       	pop	r30
     1888:	bf 91       	pop	r27
@@ -4142,110 +3980,49 @@ void __vector_3(void)
     19da:	18 95       	reti
 
 000019dc <UART_Init>:
- */ 
-#include "UART.h"
-
-void UART_Init(void)
-{
-	ClrBit(DDRD,0); //to Enable input circuit for Rx Pin
     19dc:	81 b3       	in	r24, 0x11	; 17
     19de:	8e 7f       	andi	r24, 0xFE	; 254
     19e0:	81 bb       	out	0x11, r24	; 17
-	SetBit(DDRD,1); //to Enable input circuit for Tx Pin
     19e2:	81 b3       	in	r24, 0x11	; 17
     19e4:	82 60       	ori	r24, 0x02	; 2
     19e6:	81 bb       	out	0x11, r24	; 17
-	/*8 Data bits character size*/
-	SetBit(Local_u8_UCSRCValue,UCSRC_UCSZ0);
-	SetBit(Local_u8_UCSRCValue,UCSRC_UCSZ1);
-	
-	/*9600 bps on system frequency 16MHz*/
-	UBRRL = ((u32)F_OSC * 1000000 / ((u32)16 * BAUD_RATE)) -1;
     19e8:	87 e6       	ldi	r24, 0x67	; 103
     19ea:	89 b9       	out	0x09, r24	; 9
-	Local_u16_UBRRHValue = ((u32)F_OSC * 1000000 / ((u32)16 * BAUD_RATE)) -1 >> 8;
-	UBRRH = Local_u16_UBRRHValue;
     19ec:	10 bc       	out	0x20, r1	; 32
-	
-	/*Select 1 stop bit*/
-	ClrBit(Local_u8_UCSRCValue,3);
-	
-	/*Send The Value to the register*/
-	UCSRC = Local_u8_UCSRCValue;
     19ee:	86 e8       	ldi	r24, 0x86	; 134
     19f0:	80 bd       	out	0x20, r24	; 32
-	
-	/*RX Enable*/
-	SetBit(UCSRB,UCSRB_RXEN);
     19f2:	8a b1       	in	r24, 0x0a	; 10
     19f4:	80 61       	ori	r24, 0x10	; 16
     19f6:	8a b9       	out	0x0a, r24	; 10
-	
-	/*TX Enable*/
-	SetBit(UCSRB,UCSRB_TXEN);
     19f8:	8a b1       	in	r24, 0x0a	; 10
     19fa:	88 60       	ori	r24, 0x08	; 8
     19fc:	8a b9       	out	0x0a, r24	; 10
     19fe:	08 95       	ret
 
 00001a00 <UART_Tx>:
-}
-void UART_Tx(u8 Local_u8_Data)
-{
-	UDR = Local_u8_Data;
     1a00:	8c b9       	out	0x0c, r24	; 12
-	while(GetBit(UCSRA,6) == 0); // wait till data get transmitted 
     1a02:	5e 9b       	sbis	0x0b, 6	; 11
     1a04:	fe cf       	rjmp	.-4      	; 0x1a02 <UART_Tx+0x2>
-}
     1a06:	08 95       	ret
 
 00001a08 <UART_Rx>:
-u8	 UART_Rx(void)
-{
-	while(GetBit(UCSRA,7) == 0) // wait till all data received  
     1a08:	04 c0       	rjmp	.+8      	; 0x1a12 <UART_Rx+0xa>
-	{
-		extern u8  Local_u8_Variable13 ;
-		if(Local_u8_Variable13 !=0)
     1a0a:	80 91 0e 03 	lds	r24, 0x030E	; 0x80030e <Local_u8_Variable13>
     1a0e:	81 11       	cpse	r24, r1
     1a10:	02 c0       	rjmp	.+4      	; 0x1a16 <UART_Rx+0xe>
-	UDR = Local_u8_Data;
-	while(GetBit(UCSRA,6) == 0); // wait till data get transmitted 
-}
-u8	 UART_Rx(void)
-{
-	while(GetBit(UCSRA,7) == 0) // wait till all data received  
     1a12:	5f 9b       	sbis	0x0b, 7	; 11
     1a14:	fa cf       	rjmp	.-12     	; 0x1a0a <UART_Rx+0x2>
-	{
-		extern u8  Local_u8_Variable13 ;
-		if(Local_u8_Variable13 !=0)
-		break;
-	}
-	return UDR;
     1a16:	8c b1       	in	r24, 0x0c	; 12
-}
     1a18:	08 95       	ret
 
 00001a1a <UART_TxString>:
-void UART_TxString(u8 *String)
-{
     1a1a:	0f 93       	push	r16
     1a1c:	1f 93       	push	r17
     1a1e:	cf 93       	push	r28
-	if(String != NULL)
     1a20:	00 97       	sbiw	r24, 0x00	; 0
     1a22:	59 f4       	brne	.+22     	; 0x1a3a <UART_TxString+0x20>
     1a24:	12 c0       	rjmp	.+36     	; 0x1a4a <UART_TxString+0x30>
-	{
-		u8 counter =0;
-		while(String[counter] != '\0')
-		{
-			UART_Tx(String[counter]);
     1a26:	0e 94 00 0d 	call	0x1a00	; 0x1a00 <UART_Tx>
-			counter++;
     1a2a:	cf 5f       	subi	r28, 0xFF	; 255
     1a2c:	8f e3       	ldi	r24, 0x3F	; 63
     1a2e:	9c e9       	ldi	r25, 0x9C	; 156
@@ -4256,24 +4033,12 @@ void UART_TxString(u8 *String)
     1a38:	02 c0       	rjmp	.+4      	; 0x1a3e <UART_TxString+0x24>
     1a3a:	8c 01       	movw	r16, r24
     1a3c:	c0 e0       	ldi	r28, 0x00	; 0
-void UART_TxString(u8 *String)
-{
-	if(String != NULL)
-	{
-		u8 counter =0;
-		while(String[counter] != '\0')
     1a3e:	f8 01       	movw	r30, r16
     1a40:	ec 0f       	add	r30, r28
     1a42:	f1 1d       	adc	r31, r1
     1a44:	80 81       	ld	r24, Z
     1a46:	81 11       	cpse	r24, r1
     1a48:	ee cf       	rjmp	.-36     	; 0x1a26 <UART_TxString+0xc>
-			UART_Tx(String[counter]);
-			counter++;
-			_delay_ms(10);
-		}
-	}
-}
     1a4a:	cf 91       	pop	r28
     1a4c:	1f 91       	pop	r17
     1a4e:	0f 91       	pop	r16
