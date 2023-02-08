@@ -582,23 +582,22 @@ else if (Local_u8_Mode == USER_MODE)
 		while(Local_u8_ID)
 		{
 			Local_u8_Variable11 = H_KeyPad_Read();
-			/*Checking if there's an error */
-			if( (Local_u8_Variable11 == 13) && (Local_u8_Error == 0) )
+			if((Local_u8_Variable11 == '=') && (Local_u8_Error == ERROR))
 			{
 				H_Lcd_WriteString("Error please try again");
 				_delay_ms(750);
 				H_Lcd_Clr();
 				H_Lcd_WriteString("ID:");
 			}
-			else if(Local_u8_Variable11 == 13)
+			else if(Local_u8_Variable11 == '=')
 			{
 				/*The end of taking the ID*/
-				Local_u8_Error = 0;
+				Local_u8_Error = ERROR;
 				Local_u8_ID = 0;
 			}
-			else if(Local_u8_Variable1 != 13)
+			else if(Local_u8_Variable1 != '=')
 			{
-				Local_u8_Error = 1; //No error so don't check if there's  again
+				Local_u8_Error = NO_ERROR;
 				Local_u8_IDAndPass[Local_u8_counter] = Local_u8_Variable11;
 				H_Lcd_WriteCharacter(Local_u8_IDAndPass[Local_u8_counter]);
 				Local_u8_counter++;
@@ -607,33 +606,32 @@ else if (Local_u8_Mode == USER_MODE)
 		}
 		
 		/*Taking the PASSWORD*/
-		
-		_delay_ms(400);
 		H_Lcd_Clr();
 		H_Lcd_WriteString("PASSWORD: ");
+		_delay_ms(DISPLAY_TIME);
 		H_Lcd_GoTo(1,0);
 		
 		while(!Local_u8_ID)
 		{
 			Local_u8_Variable12 = H_KeyPad_Read();
 			/*Checking if there's an error */
-			if((Local_u8_Variable12 == 13) && (Local_u8_Error == 0))
+			if((Local_u8_Variable12 == '=') && (Local_u8_Error == ERROR))
 			{
 				H_Lcd_WriteString("Error please try again");
-				_delay_ms(750);
+				_delay_ms(DISPLAY_TIME);
 				H_Lcd_Clr();
 				H_Lcd_WriteString("PASSWORD: ");
 				H_Lcd_GoTo(1,0);
 			}
-			else if(Local_u8_Variable12 == 13)
+			else if(Local_u8_Variable12 == '=')
 			{
 				/*The end of taking the ID*/
-				Local_u8_Error = 0;
+				Local_u8_Error = ERROR;
 				Local_u8_ID = 1;
 			}
 			
 			/*Enter the password you want untill 'ENTER'*/
-			else if(Local_u8_Variable12 != 13)
+			else if(Local_u8_Variable12 != '=')
 			{
 				Local_u8_Error = 1; //No error so don't check if there's  again
 				Local_u8_IDAndPass[Local_u8_counter] = Local_u8_Variable12;

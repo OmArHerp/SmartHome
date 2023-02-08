@@ -2025,9 +2025,8 @@ else if (Local_u8_Mode == USER_MODE)
 		{
 			Local_u8_Variable11 = H_KeyPad_Read();
      afa:	0e 94 2e 07 	call	0xe5c	; 0xe5c <H_KeyPad_Read>
-			/*Checking if there's an error */
-			if( (Local_u8_Variable11 == 13) && (Local_u8_Error == 0) )
-     afe:	8d 30       	cpi	r24, 0x0D	; 13
+			if((Local_u8_Variable11 == '=') && (Local_u8_Error == ERROR))
+     afe:	8d 33       	cpi	r24, 0x3D	; 61
      b00:	c1 f4       	brne	.+48     	; 0xb32 <__stack+0x2d3>
      b02:	90 91 fd 02 	lds	r25, 0x02FD	; 0x8002fd <Local_u8_Error>
      b06:	91 11       	cpse	r25, r1
@@ -2055,20 +2054,20 @@ else if (Local_u8_Mode == USER_MODE)
      b2c:	0e 94 49 08 	call	0x1092	; 0x1092 <H_Lcd_WriteString>
      b30:	19 c0       	rjmp	.+50     	; 0xb64 <__stack+0x305>
 			}
-			else if(Local_u8_Variable11 == 13)
-     b32:	8d 30       	cpi	r24, 0x0D	; 13
+			else if(Local_u8_Variable11 == '=')
+     b32:	8d 33       	cpi	r24, 0x3D	; 61
      b34:	21 f4       	brne	.+8      	; 0xb3e <__stack+0x2df>
 			{
 				/*The end of taking the ID*/
-				Local_u8_Error = 0;
+				Local_u8_Error = ERROR;
      b36:	10 92 fd 02 	sts	0x02FD, r1	; 0x8002fd <Local_u8_Error>
 				Local_u8_ID = 0;
      b3a:	00 e0       	ldi	r16, 0x00	; 0
      b3c:	13 c0       	rjmp	.+38     	; 0xb64 <__stack+0x305>
 			}
-			else if(Local_u8_Variable1 != 13)
+			else if(Local_u8_Variable1 != '=')
 			{
-				Local_u8_Error = 1; //No error so don't check if there's  again
+				Local_u8_Error = NO_ERROR;
      b3e:	91 e0       	ldi	r25, 0x01	; 1
      b40:	90 93 fd 02 	sts	0x02FD, r25	; 0x8002fd <Local_u8_Error>
 				Local_u8_IDAndPass[Local_u8_counter] = Local_u8_Variable11;
@@ -2097,26 +2096,27 @@ else if (Local_u8_Mode == USER_MODE)
 		while(Local_u8_ID)
      b64:	01 11       	cpse	r16, r1
      b66:	c9 cf       	rjmp	.-110    	; 0xafa <__stack+0x29b>
-     b68:	9f ef       	ldi	r25, 0xFF	; 255
-     b6a:	a7 e8       	ldi	r26, 0x87	; 135
-     b6c:	b3 e1       	ldi	r27, 0x13	; 19
-     b6e:	91 50       	subi	r25, 0x01	; 1
-     b70:	a0 40       	sbci	r26, 0x00	; 0
-     b72:	b0 40       	sbci	r27, 0x00	; 0
-     b74:	e1 f7       	brne	.-8      	; 0xb6e <__stack+0x30f>
-     b76:	00 c0       	rjmp	.+0      	; 0xb78 <__stack+0x319>
-     b78:	00 00       	nop
+				_delay_ms(10);
+			}
 		}
 		
 		/*Taking the PASSWORD*/
-		
-		_delay_ms(400);
 		H_Lcd_Clr();
-     b7a:	0e 94 5c 08 	call	0x10b8	; 0x10b8 <H_Lcd_Clr>
+     b68:	0e 94 5c 08 	call	0x10b8	; 0x10b8 <H_Lcd_Clr>
 		H_Lcd_WriteString("PASSWORD: ");
-     b7e:	82 ec       	ldi	r24, 0xC2	; 194
-     b80:	91 e0       	ldi	r25, 0x01	; 1
-     b82:	0e 94 49 08 	call	0x1092	; 0x1092 <H_Lcd_WriteString>
+     b6c:	82 ec       	ldi	r24, 0xC2	; 194
+     b6e:	91 e0       	ldi	r25, 0x01	; 1
+     b70:	0e 94 49 08 	call	0x1092	; 0x1092 <H_Lcd_WriteString>
+     b74:	9f ef       	ldi	r25, 0xFF	; 255
+     b76:	ae e9       	ldi	r26, 0x9E	; 158
+     b78:	b4 e2       	ldi	r27, 0x24	; 36
+     b7a:	91 50       	subi	r25, 0x01	; 1
+     b7c:	a0 40       	sbci	r26, 0x00	; 0
+     b7e:	b0 40       	sbci	r27, 0x00	; 0
+     b80:	e1 f7       	brne	.-8      	; 0xb7a <__stack+0x31b>
+     b82:	00 c0       	rjmp	.+0      	; 0xb84 <__stack+0x325>
+     b84:	00 00       	nop
+		_delay_ms(DISPLAY_TIME);
 		H_Lcd_GoTo(1,0);
      b86:	60 e0       	ldi	r22, 0x00	; 0
      b88:	81 e0       	ldi	r24, 0x01	; 1
@@ -2128,8 +2128,8 @@ else if (Local_u8_Mode == USER_MODE)
 			Local_u8_Variable12 = H_KeyPad_Read();
      b90:	0e 94 2e 07 	call	0xe5c	; 0xe5c <H_KeyPad_Read>
 			/*Checking if there's an error */
-			if((Local_u8_Variable12 == 13) && (Local_u8_Error == 0))
-     b94:	8d 30       	cpi	r24, 0x0D	; 13
+			if((Local_u8_Variable12 == '=') && (Local_u8_Error == ERROR))
+     b94:	8d 33       	cpi	r24, 0x3D	; 61
      b96:	e1 f4       	brne	.+56     	; 0xbd0 <__stack+0x371>
      b98:	90 91 fd 02 	lds	r25, 0x02FD	; 0x8002fd <Local_u8_Error>
      b9c:	91 11       	cpse	r25, r1
@@ -2148,7 +2148,7 @@ else if (Local_u8_Mode == USER_MODE)
      bb4:	e1 f7       	brne	.-8      	; 0xbae <__stack+0x34f>
      bb6:	00 c0       	rjmp	.+0      	; 0xbb8 <__stack+0x359>
      bb8:	00 00       	nop
-				_delay_ms(750);
+				_delay_ms(DISPLAY_TIME);
 				H_Lcd_Clr();
      bba:	0e 94 5c 08 	call	0x10b8	; 0x10b8 <H_Lcd_Clr>
 				H_Lcd_WriteString("PASSWORD: ");
@@ -2161,12 +2161,12 @@ else if (Local_u8_Mode == USER_MODE)
      bca:	0e 94 60 08 	call	0x10c0	; 0x10c0 <H_Lcd_GoTo>
      bce:	1b c0       	rjmp	.+54     	; 0xc06 <__stack+0x3a7>
 			}
-			else if(Local_u8_Variable12 == 13)
-     bd0:	8d 30       	cpi	r24, 0x0D	; 13
+			else if(Local_u8_Variable12 == '=')
+     bd0:	8d 33       	cpi	r24, 0x3D	; 61
      bd2:	21 f4       	brne	.+8      	; 0xbdc <__stack+0x37d>
 			{
 				/*The end of taking the ID*/
-				Local_u8_Error = 0;
+				Local_u8_Error = ERROR;
      bd4:	10 92 fd 02 	sts	0x02FD, r1	; 0x8002fd <Local_u8_Error>
 				Local_u8_ID = 1;
      bd8:	01 e0       	ldi	r16, 0x01	; 1
@@ -2174,8 +2174,8 @@ else if (Local_u8_Mode == USER_MODE)
 			}
 			
 			/*Enter the password you want untill 'ENTER'*/
-			else if(Local_u8_Variable12 != 13)
-     bdc:	8d 30       	cpi	r24, 0x0D	; 13
+			else if(Local_u8_Variable12 != '=')
+     bdc:	8d 33       	cpi	r24, 0x3D	; 61
      bde:	99 f0       	breq	.+38     	; 0xc06 <__stack+0x3a7>
 			{
 				Local_u8_Error = 1; //No error so don't check if there's  again
@@ -2199,9 +2199,9 @@ else if (Local_u8_Mode == USER_MODE)
      c00:	f1 f7       	brne	.-4      	; 0xbfe <__stack+0x39f>
      c02:	00 c0       	rjmp	.+0      	; 0xc04 <__stack+0x3a5>
      c04:	00 00       	nop
-		_delay_ms(400);
 		H_Lcd_Clr();
 		H_Lcd_WriteString("PASSWORD: ");
+		_delay_ms(DISPLAY_TIME);
 		H_Lcd_GoTo(1,0);
 		
 		while(!Local_u8_ID)
