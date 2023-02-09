@@ -458,9 +458,9 @@ int main(void)
 						 u8 Local_u8_BREAK = NO;//END 'while(REMOVING_USER)' LOOP
 						 if(Local_u8_EEPROMCount == LAST_PLACE)
 						 {
-		                     UART_Tx(13);
+		                     UART_Tx(NEXTLINE);
 							 UART_TxString(" USER DOESN'T");
-		                     UART_Tx(13);
+		                     UART_Tx(NEXTLINE);
 							 UART_TxString(" EXIST");
 							 break; //END 'while(REMOVING_USER)' LOOP
 						 }
